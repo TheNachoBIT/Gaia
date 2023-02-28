@@ -112,7 +112,7 @@ GetPackages :: proc() -> bool
 
 	root := json_data.(json.Object);
 
-	fmt.println("Routes:");
+	//fmt.println("Routes:");
 	deps := root["dependencies"];
 	for name, path in deps.(json.Object)
 	{
@@ -123,10 +123,10 @@ GetPackages :: proc() -> bool
     	fmt.println(fullPath);
 
     	cmd := Join("git clone ", fullPath);
-    	cmd = Join(cmd, "_packages/");
+    	cmd = Join(cmd, " _packages/");
     	cmd = Join(cmd, name);
 
-    	libc.system(cmd);
+    	libc.system(strings.clone_to_cstring(cmd));
 	}
 
 	return true;
